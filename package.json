@@ -1,0 +1,42 @@
+{
+  "name": "tradernet-mcp",
+  "version": "1.1.1",
+  "mcpName": "io.github.verbart/tradernet-mcp",
+  "description": "MCP server for Tradernet/Freedom24 trading API — portfolio, orders, quotes, and more",
+  "main": "dist/index.js",
+  "bin": {
+    "tradernet-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "tradernet",
+    "freedom24",
+    "trading",
+    "api",
+    "claude",
+    "model-context-protocol"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verbart/tradernet-mcp.git"
+  },
+  "author": "Artem Verbat",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "axios": "^1.13.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}
