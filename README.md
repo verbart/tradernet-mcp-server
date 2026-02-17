@@ -9,7 +9,7 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
 </p>
 
-MCP server for the [Tradernet](https://tradernet.com) / [Freedom24](https://freedom24.com) trading platform API. Manage your portfolio, place orders, get quotes, search tickers, set alerts — all through AI assistants like Claude.
+MCP server for the [Tradernet](https://tradernet.com) / [Freedom24](https://freedom24.com) trading platform API. Manage your portfolio, place orders, get quotes, search tickers, set alerts — all through AI assistants like Claude, ChatGPT, and others.
 
 ## Available Tools
 
@@ -64,6 +64,28 @@ claude mcp add tradernet -- npx -y tradernet-mcp
 ```
 
 Then set environment variables `TRADERNET_PUBLIC_KEY` and `TRADERNET_PRIVATE_KEY`.
+
+#### ChatGPT
+
+ChatGPT only supports remote MCP servers over HTTP. To connect this stdio server, use [supergateway](https://github.com/supercorp-ai/supergateway) as a bridge and [ngrok](https://ngrok.com) to expose it publicly:
+
+1. Start the server with HTTP transport:
+
+```bash
+TRADERNET_PUBLIC_KEY=your_public_key \
+TRADERNET_PRIVATE_KEY=your_private_key \
+npx -y supergateway --stdio "npx -y tradernet-mcp" --outputTransport streamableHttp --port 8000
+```
+
+2. Expose it via ngrok:
+
+```bash
+ngrok http 8000
+```
+
+3. In ChatGPT: **Settings → Connectors → Add Connector**, enter your ngrok URL with `/mcp` path (e.g. `https://abc123.ngrok-free.app/mcp`)
+
+> Requires ChatGPT Pro, Team, or Enterprise plan with Developer Mode enabled.
 
 ## Usage Examples
 
